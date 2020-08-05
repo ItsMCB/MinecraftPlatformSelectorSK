@@ -40,7 +40,7 @@ on join:
 
 # INVENTORY SELECTOR
 command /platform:
-    description: The best way of doing something.
+    description: Opens the selection chest gui.
     trigger:
         set metadata tag "platform" of player to chest inventory with 3 rows named "&bSelect Your Platform"
         set slot 4 of metadata tag "platform" of player to player's skull named "&6%player%" with lore "&7Please select your platform below."
