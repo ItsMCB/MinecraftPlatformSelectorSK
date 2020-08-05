@@ -1,0 +1,76 @@
+#---------------------------------------------
+
+#      Vexel Platform Selector by ItsMCB
+#  Designed for South Hollow and Vexel Games
+
+#---------------------------------------------
+
+#---------------------------------------------
+#     CONFIG
+#---------------------------------------------
+# Vexel Bot Moduel
+
+options:
+    prefix: §7[§b§lVexel Bot§7] &8»&r
+    version: 1.0
+
+# Platform Selection Moduel
+on any move:
+    if block below the player is netherrack:
+        make player execute command "/platform"
+on connect:
+    if {uuid::%player%} is not set:
+        set {uuid::%player%} to player's uuid
+    
+on join:
+    set {_placeholder} to placeholder "player_uuid"
+    if player doesn't have permission "group.minecraftjava" or "group.minecraftbedrockmobile" or "group.minecraftbedrockconsole":
+        wait 5 ticks
+        make player execute command "/warp platform"
+        make console execute command "lp user %{uuid::%player%}% parent remove minecraftjava"
+        make console execute command "lp user %{uuid::%player%}% parent remove minecraftbedrockmobile"
+        make console execute command "lp user %{uuid::%player%}% parent remove minecraftbedrockconsole"
+    else:
+        if player has permission "group.minecraftjava":
+            message "&7Remembered that your platform choice is &bJava Editon&7."
+        else if player has permission "group.minecraftbedrockmobile":
+            message "&7Remembered that your platform choice is &bBedrock Mobile Editon&7."
+        else if player has permission "group.minecraftbedrockconsole":
+            message "&7Remembered that your platform choice is &bBedrock Windows 10/Console Editon&7."
+
+# INVENTORY SELECTOR
+command /platform:
+    description: The best way of doing something.
+    trigger:
+        set metadata tag "platform" of player to chest inventory with 3 rows named "&bSelect Your Platform"
+        set slot 4 of metadata tag "platform" of player to player's skull named "&6%player%" with lore "&7Please select your platform below."
+        set slot 21 of metadata tag "platform" of player to flower pot named "&6Java Edition"
+        set slot 22 of metadata tag "platform" of player to bedrock named "&6Windows 10/Console Edition"
+        set slot 23 of metadata tag "platform" of player to bedrock named "&6Phone/Tablet Edition"
+        open (metadata tag "platform" of player) to player
+
+on inventory click:
+    if event-inventory = (metadata tag "platform" of player):
+        cancel event
+        #cancel the clicking. This makes the Item unstealable
+        if index of event-slot is 21:
+            send "&7You have selected &bJava &7as your platform. Switch at any time with &b/platform&7."
+            make console execute command "lp user %{uuid::%player%}% parent add minecraftjava"
+            make console execute command "lp user %{uuid::%player%}% parent remove minecraftbedrockmobile"
+            make console execute command "lp user %{uuid::%player%}% parent remove minecraftbedrockconsole"
+            close player's inventory
+            make console execute command "/spawn %player%"
+        if index of event-slot is 22:
+            send "&7You have selected &bBedrock for Windows 10 and Consoles &7as your platform. Switch at any time with &b/platform&7."
+            make console execute command "lp user %{uuid::%player%}% parent remove minecraftjava"
+            make console execute command "lp user %{uuid::%player%}% parent remove minecraftbedrockmobile"
+            make console execute command "lp user %{uuid::%player%}% parent add minecraftbedrockconsole"
+            close player's inventory
+            make console execute command "/spawn %player%"
+        if index of event-slot is 23:
+            send "&7You have selected &bBedrock for Mobile Devices &7as your platform. Switch at any time with &b/platform&7."
+            make console execute command "lp user %{uuid::%player%}% parent remove minecraftjava"
+            make console execute command "lp user %{uuid::%player%}% parent add minecraftbedrockmobile"
+            make console execute command "lp user %{uuid::%player%}% parent remove minecraftbedrockconsole"
+            close player's inventory
+            make console execute command "/spawn %player%"
