@@ -1,7 +1,7 @@
 # Minecraft Platform Selector SK
 This skript lets players choose what Minecraft platform they are on so that you can tailor their experience through Luck Perm groups.
 
-Designed to be used in a server hub.
+Designed to be used in a server hub. Created for the South Hollow and Vexel Games Minecraft server.
 
 ## Prerequisites
 * Basic knowledge on how to install and edit skripts
