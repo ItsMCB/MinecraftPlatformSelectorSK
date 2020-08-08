@@ -1,3 +1,6 @@
+Deprecated
+==========
+
 # This project is deprecated and won't recieve any more updates. Thanks for being interested in it though!
 
 # Minecraft Platform Selector SK
