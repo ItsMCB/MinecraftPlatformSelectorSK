@@ -1,3 +1,5 @@
+# This project is deprecated and won't recieve any more updates. Thanks for being interested in it though!
+
 # Minecraft Platform Selector SK
 This skript lets players choose what Minecraft platform they are on so that you can tailor their experience through Luck Perm groups.
 
